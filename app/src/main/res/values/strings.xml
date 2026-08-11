@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Road Class</string>
+    <string name="start_url_label">Start URL</string>
+    <string name="save">Save</string>
+    <string name="saved">Saved</string>
+    <string name="hint_mobile">Mobile site</string>
+    <string name="hint_tv">TV site</string>
+    <string name="grant_overlay">Allow display over other apps</string>
+    <string name="overlay_needed">Overlay permission is required for the car screen</string>
+    <string name="overlay_ok">Overlay permission already granted</string>
+    <string name="setup_notes">Setup:\n1. Tap the button above and allow \"Display over other apps\".\n2. Android Auto app on the phone: tap the version string 10 times to unlock Developer Mode.\n3. Overflow menu, Developer settings, turn on Unknown sources.\n4. Reconnect the phone to the car. Road Class appears under the navigation apps.\n\nThe TV site has bigger tap targets. The mobile site handles sign-in better. Try both.</string>
+</resources>
