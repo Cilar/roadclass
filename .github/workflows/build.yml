@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +31,23 @@ jobs:
           chmod +x gradlew
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          ./gradlew assembleDebug --no-daemon 2>&1 | tee build.log
+
+      - name: Publish log on failure
+        if: steps.build.outcome == 'failure'
+        run: |
+          mkdir -p build-logs
+          tail -c 60000 build.log > build-logs/latest-failure.log
+          git config user.name "ci"
+          git config user.email "ci@local"
+          git add -f build-logs/latest-failure.log
+          git commit -m "CI log [skip ci]" || true
+          git push || true
+          exit 1
 
       - name: Rename
         run: |
